@@ -1,6 +1,7 @@
 # Spoke Vagrant
 
-This box will build you an ubuntu vagrant VM with postgres and Spoke dependencies installed.
+This box will build you an ubuntu vagrant VM with postgres and Spoke dependencies installed.  You'll need to install VirtualBox, and then Vagrant as prerequisites.
+> For instructions, see: https://www.vagrantup.com/intro/getting-started/index.html
 
 # Usage
 
@@ -24,6 +25,12 @@ You will see lots of install messages!
 
 > Note: You'll need to set your Auth0 parameters to actually be able to log in
 
+# Shutting down the VM
+When you are not working on Spoke, you can shut down the VM. When you shut it down, all state is preserved.  So any changes you made to the VM will persist between shutdown/reboot.  Your source tree will also be preserved.
+
+1. run `vagrant halt` to shut down
+2. run `vagrant up` to restart
+
 # Unhosing yourself
 If you mess up the system, corrupt the database, or otherwise get to an unworking state, vagrant allows you to destroy and recreate the VM
 
@@ -34,3 +41,10 @@ This will shut down the machine and destroy it.
 2. run `vagrant up`
 This will recreate the machine just like the first time.
 
+# Vagrant Help
+
+* run `vagrant help` for all commands
+
+* run `vagrant status` to check the status (up/down) of your VM
+
+* run `vagrant ssh` to ssh login to the VM
