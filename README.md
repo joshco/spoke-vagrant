@@ -23,3 +23,14 @@ You will see lots of install messages!
 8. Point your browser to ```http://192.168.10.10:3000/```
 
 > Note: You'll need to set your Auth0 parameters to actually be able to log in
+
+# Unhosing yourself
+If you mess up the system, corrupt the database, or otherwise get to an unworking state, vagrant allows you to destroy and recreate the VM
+
+1. From your shell outside the VM, run `vagrant destroy`
+This will shut down the machine and destroy it.
+> your source tree will be preserved
+
+2. run `vagrant up`
+This will recreate the machine just like the first time.
+
