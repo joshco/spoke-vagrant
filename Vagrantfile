@@ -81,10 +81,6 @@ sudo -u postgres /vagrant/pgsetup.sh
 mkdir /home/vagrant/spoke_node_modules
 chown vagrant /home/vagrant/spoke_node_modules
 
-echo "/home/vagrant/spoke_node_modules     /vagrant/Spoke/node_modules    none    bind" >> /etc/fstab
-mount -a
-#sudo mount --bind /home/vagrant/spoke_node_modules /vagrant/Spoke/node_modules
-
 SCRIPT
 
 $user_script=<<USER
@@ -109,8 +105,21 @@ npm install -g foreman
 
 USER
 
+$post_boot=<<BOOT
+echo "Bind mount node_modules"
+mount --bind /home/vagrant/spoke_node_modules /vagrant/Spoke/node_modules
+
+BOOT
+
+  config.vm.provision "fix-no-tty", type: "shell", run: 'always' do |s|
+      s.privileged = false
+      s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+  end
+
   config.vm.provision "shell", inline: $script
+  config.vm.provision :shell, inline: $post_boot, run: 'always'
   config.vm.provision "shell", privileged: false, inline: $user_script
+  
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
