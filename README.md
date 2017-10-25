@@ -8,6 +8,9 @@ This box will build you an ubuntu vagrant VM with postgres and Spoke dependencie
 1. Clone this repository into a directory, eg spoke-vagrant
 
 2. Within spoke-vagrant, clone the MoveOn Spoke repository into subdirectory Spoke
+
+   run ```git clone https://github.com/MoveOnOrg/Spoke.git```
+
 > It is critical that you clone the Spoke source __before__ you start the VM.  If you don't do this, the provisioning step of VM creation will fail.
 
 3. Customize your .env by using the .env-vagrant that came with this repository
